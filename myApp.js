@@ -11,18 +11,20 @@ app.get("/", (req, res) => {
 app.use(express.static(__dirname + "/public"));
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get("/json", (req, res) => {
+/*app.get("/json", (req, res) => {
     res.json({
       message: "Hello json"
     });
-  });
+  });*/
 
-var response = "Hello World".toUpperCase();
-if (process.env.MESSAGE_STYLE === "HELLO WORLD") {
-    response = "Hello World".toUpperCase();
-  } else {
-    response = "Hello World";
-  }
+let message = { message: "Hello json" };
+app.get("/json", (request, response) => {
+    if (process.env.MESSAGE_STYLE === "uppercase") {
+        response.json({ message: "HELLO JSON" });
+        } else {
+            response.json(message);
+        }
+    });
 
 
 
