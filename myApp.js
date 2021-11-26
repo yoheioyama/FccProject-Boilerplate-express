@@ -15,6 +15,13 @@ app.get("/json", (req, res) => {
     });
   });
 
+var response = "Hello World".toUpperCase();
+if (process.env.VAR_NAME === "allCaps") {
+    response = "Hello World".toUpperCase();
+  } else {
+    response = "Hello World";
+  }
+
 
 
 
