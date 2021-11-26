@@ -3,10 +3,12 @@ require('dotenv').config();
 var express = require('express');
 var app = express();
 
-app.use((request, response, next) => {
-    console.log(request.method + " " + request.path + " - " + request.ip);
-    next();
-  });
+app.get('/now', (request, response, next) => {
+    request.time = new Date().toString()
+    next()
+  } , (request, response) => {
+    response.json({'time' : request.time})
+  })
 
 console.log('Hello World');
 app.get("/", (req, res) => {
